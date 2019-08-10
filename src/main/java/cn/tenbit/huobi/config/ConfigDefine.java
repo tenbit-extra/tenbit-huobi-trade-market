@@ -1,5 +1,7 @@
 package cn.tenbit.huobi.config;
 
+import java.io.File;
+
 /**
  * @Author bangquan.qian
  * @Date 2019-08-09 20:52
@@ -7,6 +9,11 @@ package cn.tenbit.huobi.config;
 public interface ConfigDefine {
 
     String MAIL_CHARSET = "utf-8";
+
+    String USER_DIR = System.getProperty("user.dir");
+
+    String MAIL_OUT_PROPERTIES = USER_DIR + File.separator + "mail.properties";
+    String CONFIG_OUT_PROPERTIES = USER_DIR + File.separator + "config.properties";
 
     String MAIL_PROPERTIES = "classpath:/mail.properties";
     String CONFIG_PROPERTIES = "classpath:/config.properties";
