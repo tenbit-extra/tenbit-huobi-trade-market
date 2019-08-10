@@ -15,10 +15,10 @@ public class ConfigLoader {
         holder.putAll(HarePropertiesUtils.loadFromPropertiesFile(ConfigDefine.MAIL_PROPERTIES));
 
         if (checkFileExists(ConfigDefine.CONFIG_OUT_PROPERTIES)) {
-            holder.putAll(HarePropertiesUtils.loadFromPropertiesFile(ConfigDefine.CONFIG_PROPERTIES));
+            holder.putAll(HarePropertiesUtils.loadFromPropertiesFile(ConfigDefine.CONFIG_OUT_PROPERTIES));
         }
         if (checkFileExists(ConfigDefine.MAIL_OUT_PROPERTIES)) {
-            holder.putAll(HarePropertiesUtils.loadFromPropertiesFile(ConfigDefine.CONFIG_PROPERTIES));
+            holder.putAll(HarePropertiesUtils.loadFromPropertiesFile(ConfigDefine.MAIL_OUT_PROPERTIES));
         }
     }
 
