@@ -25,6 +25,9 @@ public class HbDatabase {
     private final Map<String, Object> db = new ConcurrentHashMap<>();
 
     public static void save(String key, Object data) {
+        if (key == null || data == null) {
+            return;
+        }
         getInstance().db.put(key, data);
     }
 
