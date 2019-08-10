@@ -13,11 +13,11 @@ public class HbLogic {
     }
 
     public static String buildConsoleForBuyPrice() {
-        return "卖价升高，最新卖价：" + HbDatas.getBuyPrice();
+        return "卖价变动，最新卖价：" + HbDatas.getBuyPrice();
     }
 
     public static String buildConsoleForSellPrice() {
-        return "买价降低，最新买价：" + HbDatas.getSellPrice();
+        return "买价变动，最新买价：" + HbDatas.getSellPrice();
     }
 
     public static String buildConsole() {

@@ -38,7 +38,7 @@ public class HbSellAnalyser implements Analyser<HbSellResult> {
 
         BigDecimal dbPrice = HbDatas.getSellPrice();
 
-        if (dbPrice == null || dbPrice.compareTo(price) > 0) {
+        if (dbPrice == null || dbPrice.compareTo(price) != 0) {
             HbDatas.setSellPrice(price);
             Events.publish(new StringEvent(HbEventType.EMAIL, HbLogic.buildEmail()));
             Events.publish(new StringEvent(HbEventType.CONSOLE, HbLogic.buildConsoleForSellPrice()));
