@@ -1,6 +1,7 @@
 package cn.tenbit.huobi.config;
 
 import java.io.File;
+import java.math.BigDecimal;
 
 /**
  * @Author bangquan.qian
@@ -30,4 +31,13 @@ public interface ConfigDefine {
 
     String DB_KEY_HB_SELL_PRICE = "hb:c2c:price:sell:";
     String DB_KEY_HB_BUY_PRICE = "hb:c2c:price:buy:";
+
+    String DB_KEY_HB_LAST_SELL_PRICE = "hb:c2c:price:last_sell:";
+    String DB_KEY_HB_LAST_BUY_PRICE = "hb:c2c:price:last_buy:";
+
+    String DB_KEY_HB_EMAIL_LAST_SEND_TIME = "hb:c2c:email:last_send_time:";
+
+    int MIN_EMAIL_INTERVAL_TIME_MS = 5 * 60 * 1000;
+
+    BigDecimal MIN_DELTA_PRICE = new BigDecimal("0.02");
 }

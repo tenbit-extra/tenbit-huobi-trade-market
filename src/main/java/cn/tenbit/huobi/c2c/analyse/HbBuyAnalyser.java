@@ -5,6 +5,7 @@ import cn.tenbit.huobi.c2c.domain.HbBuyData;
 import cn.tenbit.huobi.c2c.domain.HbBuyResult;
 import cn.tenbit.huobi.c2c.event.HbEventType;
 import cn.tenbit.huobi.c2c.logic.HbLogic;
+import cn.tenbit.huobi.c2c.util.HbEmailUtils;
 import cn.tenbit.huobi.common.analyse.Analyser;
 import cn.tenbit.huobi.common.event.Events;
 import cn.tenbit.huobi.common.event.StringEvent;
@@ -40,10 +41,12 @@ public class HbBuyAnalyser implements Analyser<HbBuyResult> {
 
         if (dbPrice == null || dbPrice.compareTo(price) != 0) {
             HbDatas.setBuyPrice(price);
-            Events.publish(new StringEvent(HbEventType.EMAIL, HbLogic.buildEmail()));
+            HbEmailUtils.sendEmailIfNecessary();
             Events.publish(new StringEvent(HbEventType.CONSOLE, HbLogic.buildConsoleForBuyPrice()));
         }
 
-        Events.publish(new StringEvent(HbEventType.CONSOLE, HbLogic.buildConsole()));
+        Events.publish(new
+
+                StringEvent(HbEventType.CONSOLE, HbLogic.buildConsole()));
     }
 }
