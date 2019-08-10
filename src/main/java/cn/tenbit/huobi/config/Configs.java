@@ -1,8 +1,10 @@
 package cn.tenbit.huobi.config;
 
 import cn.tenbit.hare.core.lite.constant.HareConsts;
+import cn.tenbit.hare.core.lite.util.HareJsonUtils;
 import cn.tenbit.hare.core.lite.util.HareObjectUtils;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -29,6 +31,10 @@ public class Configs {
     public static void reloadProperties() {
         Configs instance = getInstance();
         getInstance().loader.reload(instance.holder);
+    }
+
+    public static String showProperties() {
+        return HareJsonUtils.toJsonString(getInstance().holder.getProp(), SerializerFeature.PrettyFormat);
     }
 
     @SuppressWarnings(HareConsts.SUPPRESS_WARNING_UNCHECKED)
