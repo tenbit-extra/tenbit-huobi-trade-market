@@ -84,6 +84,7 @@ public class HbInvoker implements Invoker {
 
     private void consoleWork() {
         Events.publish(new StringEvent(HbEventType.CONSOLE, "START WORK"));
+        Events.publish(new StringEvent(HbEventType.CONSOLE, ConfigDefine.USER_DIR));
         Events.publish(new StringEvent(HbEventType.CONSOLE, Configs.showProperties()));
     }
 
