@@ -11,6 +11,7 @@ import cn.tenbit.huobi.c2c.event.EmailOutputListener;
 import cn.tenbit.huobi.c2c.event.HbEventType;
 import cn.tenbit.huobi.c2c.input.HbBuyInputer;
 import cn.tenbit.huobi.c2c.input.HbSellInputer;
+import cn.tenbit.huobi.c2c.task.HbDailyReporter;
 import cn.tenbit.huobi.c2c.watch.HbBuyWatcher;
 import cn.tenbit.huobi.c2c.watch.HbSellWatcher;
 import cn.tenbit.huobi.common.event.Events;
@@ -34,6 +35,8 @@ public class HbInvoker implements Invoker {
     private final Watcher<HbBuyResult> buyWatcher = new HbBuyWatcher();
 
     private final Watcher<HbSellResult> sellWatcher = new HbSellWatcher();
+
+    private final HbDailyReporter dailyReporter = new HbDailyReporter();
 
     private final ExecutorService pool = ThreadPools.getPool();
 
@@ -77,8 +80,21 @@ public class HbInvoker implements Invoker {
             consoleWork();
             invokeBuyWatcher();
             invokeSellWatcher();
+            invokeDailyReporter();
             justStandBy();
             return null;
+        });
+    }
+
+    private void invokeDailyReporter() {
+        pool.submit(() -> {
+            while (true) {
+                HareSleepUtils.sleep(SEQUENCE_TIME_UNIT, SEQUENCE_TIME_OUT);
+                HareInvokeUtils.invokeWithSwallow(() -> {
+                    dailyReporter.run();
+                    return null;
+                });
+            }
         });
     }
 

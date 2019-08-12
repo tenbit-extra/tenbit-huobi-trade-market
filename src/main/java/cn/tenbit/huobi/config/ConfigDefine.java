@@ -1,7 +1,10 @@
 package cn.tenbit.huobi.config;
 
+import com.google.common.collect.Lists;
+
 import java.io.File;
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @Author bangquan.qian
@@ -40,4 +43,8 @@ public interface ConfigDefine {
     int MIN_EMAIL_INTERVAL_TIME_MS = 5 * 60 * 1000;
 
     BigDecimal MIN_DELTA_PRICE = new BigDecimal("0.02");
+
+    List<Integer> DAILY_REPORT_TIME = Lists.newArrayList(9);
+
+    long ONE_DAY_MS = 24 * 60 * 60 * 1000;
 }
