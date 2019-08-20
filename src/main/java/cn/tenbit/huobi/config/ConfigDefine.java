@@ -3,7 +3,6 @@ package cn.tenbit.huobi.config;
 import com.google.common.collect.Lists;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -24,6 +23,7 @@ public interface ConfigDefine {
 
     String HUOBI_C2C_API_BUY = "huobi.c2c.api.buy";
     String HUOBI_C2C_API_SELL = "huobi.c2c.api.sell";
+    String HUOBI_C2C_PRICE_DELTA = "huobi.c2c.price.delta";
 
     String MAIL_SEND_SMTP_HOST = "mail.send.smtp.host";
     String MAIL_SEND_SMTP_PORT = "mail.send.smtp.port";
@@ -42,7 +42,7 @@ public interface ConfigDefine {
 
     int MIN_EMAIL_INTERVAL_TIME_MS = 5 * 60 * 1000;
 
-    BigDecimal MIN_DELTA_PRICE = new BigDecimal("0.02");
+    String DEFAULT_PRICE_DELTA = "0.02";
 
     List<Integer> DAILY_REPORT_TIME = Lists.newArrayList(9);
 

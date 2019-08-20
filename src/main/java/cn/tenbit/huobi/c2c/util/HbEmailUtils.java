@@ -7,6 +7,10 @@ import cn.tenbit.huobi.c2c.logic.HbLogic;
 import cn.tenbit.huobi.common.event.Events;
 import cn.tenbit.huobi.common.event.StringEvent;
 import cn.tenbit.huobi.config.ConfigDefine;
+import cn.tenbit.huobi.config.Configs;
+import org.apache.commons.lang3.StringUtils;
+
+import java.math.BigDecimal;
 
 /**
  * @Author bangquan.qian
@@ -15,12 +19,17 @@ import cn.tenbit.huobi.config.ConfigDefine;
 public class HbEmailUtils {
 
     public static void sendEmailIfNecessary() {
+        String property = Configs.getProperty(ConfigDefine.HUOBI_C2C_PRICE_DELTA);
+        if (StringUtils.isBlank(property)) {
+            property = "0.02";
+        }
+        BigDecimal deltaPrice = new BigDecimal(property);
         if (HbDatas.getLastBuyPrice() != null && HbDatas.getBuyPrice() != null &&
-                HbDatas.getLastBuyPrice().subtract(HbDatas.getBuyPrice()).abs().compareTo(ConfigDefine.MIN_DELTA_PRICE) < 0) {
+                HbDatas.getLastBuyPrice().subtract(HbDatas.getBuyPrice()).abs().compareTo(deltaPrice) < 0) {
             return;
         }
         if (HbDatas.getLastSellPrice() != null && HbDatas.getSellPrice() != null &&
-                HbDatas.getLastSellPrice().subtract(HbDatas.getSellPrice()).abs().compareTo(ConfigDefine.MIN_DELTA_PRICE) < 0) {
+                HbDatas.getLastSellPrice().subtract(HbDatas.getSellPrice()).abs().compareTo(deltaPrice) < 0) {
             return;
         }
         if (HbDatas.getLastEmailTime() == null
